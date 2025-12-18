@@ -1,4 +1,4 @@
-SECTION "Map Scripts 1", ROMX
+SECTION "Map Scripts 1", ROMX ; FYI: I opted not to modify this file
 
 INCLUDE "maps/GoldenrodGym.asm"
 INCLUDE "maps/GoldenrodBikeShop.asm"

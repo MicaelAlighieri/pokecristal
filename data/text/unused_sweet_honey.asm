@@ -8,61 +8,59 @@
 ; Most of these texts seem to be associated with a single NPC.
 ; The last text is associated with a second NPC, probably a Butterfree.
 
-UnusedSweetHoneyText: ; unreferenced
-	text "My #MON is an"
-	line "expert at collect-"
-	cont "ing SWEET HONEY."
+UnusedSweetHoneyText:
+	text "Mi #MON es"
+	line "experto en recoger"
+	cont "DULCE MIEL."
 
-	para "I'll share some"
-	line "with you."
+	para "Compartiré un poco"
+	line "contigo."
 	done
 
-UnusedSweetHoneyBagFullText: ; unreferenced
-	text "I want to give you"
-	line "some SWEET HONEY,"
-
-	para "but you have no"
-	line "room for it."
+UnusedSweetHoneyBagFullText:
+	text "Quiero darte un"
+	line "poco de MIEL, pero"
+	cont "no tienes sitio."
 	done
 
-UnusedSweetHoneyGiveText: ; unreferenced
-	text "Here you go! Have"
-	line "some SWEET HONEY!"
+UnusedSweetHoneyGiveText:
+	text "¡Aquí tienes! Toma"
+	line "un poco de MIEL."
 	done
 
-UnusedGotSweetHoneyText: ; unreferenced
-	text "<PLAYER> received"
-	line "SWEET HONEY."
+UnusedGotSweetHoneyText:
+	text "<PLAYER> recibió"
+	line "DULCE MIEL."
 	done
 
-UnusedSweetHoneyAfterText1: ; unreferenced
-	text "My little brother"
-	line "takes SWEET HONEY"
+UnusedSweetHoneyAfterText1:
+	text "Mi hermano pequeño"
+	line "coge la MIEL y va"
 
-	para "and goes somewhere"
-	line "with it."
+	para "a algún lugar con"
+	line "ella."
 
-	para "I wonder what he's"
-	line "up to?"
+	para "Me pregunto qué"
+	line "planea."
 	done
 
-UnusedSweetHoneyAfterText2: ; unreferenced
-	text "Did you put SWEET"
-	line "HONEY on a tree?"
+UnusedSweetHoneyAfterText2:
+	text "¿Has puesto MIEL"
+	line "en un árbol?"
 
-	para "What happened to"
-	line "it?"
+	para "¿Qué ha pasado con"
+	line "ella?"
 	done
 
-UnusedSweetHoneyAfterText3: ; unreferenced
-	text "Did you put SWEET"
-	line "HONEY on a tree?"
+UnusedSweetHoneyAfterText3:
+	text "¿Has puesto MIEL"
+	line "en un árbol?"
 
-	para "It takes about a"
-	line "day for #MON to"
-	cont "be drawn to it."
+	para "Los #MON"
+	line "tardarán un día en"
+	cont "sentirse atraídos."
 	done
 
-UnusedSweetHoneyButterfreeText: ; unreferenced
-	text "BUTTERFREE: Freeh!"
+UnusedSweetHoneyButterfreeText:
+	text "BUTTERFREE: ¡Frii!"
 	done

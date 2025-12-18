@@ -862,17 +862,13 @@ Palette_172edf:
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 
+Stadium2N64Tilemap:
+; Crystal 1.1 corrupted this tilemap
+; Fix: Replace with "gfx/mobile/stadium2_n64.tilemap" from Crystal 1.0
+INCBIN "gfx/mobile/stadium2_n64_corrupt.tilemap"
+
 Stadium2N64GFX:
 INCBIN "gfx/mobile/stadium2_n64.2bpp"
-
-Stadium2N64Tilemap:
-if DEF(_CRYSTAL11)
-; BUG: Crystal 1.1 corrupted this tilemap by treating $0a bytes as
-; Unix newlines, and converting them to $0d $0a Windows newlines.
-INCBIN "gfx/mobile/stadium2_n64_corrupt.tilemap"
-else
-INCBIN "gfx/mobile/stadium2_n64.tilemap"
-endc
 
 Stadium2N64Attrmap:
 INCBIN "gfx/mobile/stadium2_n64.attrmap"

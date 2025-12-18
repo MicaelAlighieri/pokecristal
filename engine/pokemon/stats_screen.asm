@@ -706,20 +706,20 @@ LoadPinkPage:
 	ret
 
 .Status_Type:
-	db   "STATUS/"
-	next "TYPE/@"
+	db   "ESTADO/"
+	next "TIPO/@"
 
 .OK_str:
-	db "OK @"
+	db "OK@"
 
 .ExpPointStr:
-	db "EXP POINTS@"
+	db "PUNTOS EXP@"
 
 .LevelUpStr:
-	db "LEVEL UP@"
+	db "MÁS NIVEL@"
 
 .ToStr:
-	db "TO@"
+	db "A@"
 
 .PkrsStr:
 	db "#RUS@"
@@ -761,13 +761,13 @@ LoadGreenPage:
 	ret
 
 .Item:
-	db "ITEM@"
+	db "OBJETOS@"
 
 .ThreeDashes:
 	db "---@"
 
 .Move:
-	db "MOVE@"
+	db "MOVER@"
 
 LoadBluePage:
 	call .PlaceOTInfo
@@ -824,10 +824,10 @@ LoadBluePage:
 	dw wBufferMonOT
 
 IDNoString:
-	db "<ID>№.@"
+	db "№<ID>@"
 
 OTString:
-	db "OT/@"
+	db "EO/@"
 
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
@@ -1058,31 +1058,33 @@ endc
 	ret
 
 EggString:
-	db "EGG@"
+	db "HUEVO@"
 
 FiveQMarkString:
-	db "?????@"
+	db "¿¿??@"
 
 EggSoonString:
-	db   "It's making sounds"
-	next "inside. It's going"
-	next "to hatch soon!@"
+	db   "Se oyen ruidos"
+	next "dentro. ¡Pronto"
+	next "se abrirá!@"
 
 EggCloseString:
-	db   "It moves around"
-	next "inside sometimes."
-	next "It must be close"
-	next "to hatching.@"
+	db   "A veces se"
+	next "mueve. Debe de"
+	next "estar a punto"
+	next "de abrirse.@"
 
 EggMoreTimeString:
-	db   "Wonder what's"
-	next "inside? It needs"
-	next "more time, though.@"
+	db   "¿Qué habrá"
+	next "dentro? Tendrás"
+	next "que esperar un"
+	next "poco más.@"
 
 EggALotMoreTimeString:
-	db   "This EGG needs a"
-	next "lot more time to"
-	next "hatch.@"
+	db   "Este HUEVO"
+	next "necesita mucho"
+	next "más tiempo"
+	next "para abrirse.@"
 
 StatsScreen_AnimateEgg:
 	call StatsScreen_GetAnimationParam

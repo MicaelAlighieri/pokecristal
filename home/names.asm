@@ -244,12 +244,12 @@ GetTMHMName::
 	ret
 
 .TMText:
-	db "TM"
+	db "MT"
 .TMTextEnd:
 	db "@"
 
 .HMText:
-	db "HM"
+	db "MO"
 .HMTextEnd:
 	db "@"
 

@@ -1654,9 +1654,9 @@ HandleScreens:
 	jp CopyName2
 
 .Your:
-	db "Your@"
+	db "tu@" ; FYI: Both this and the other below appear as uppercase in pokecrystal repo
 .Enemy:
-	db "Enemy@"
+	db "enemigo@"
 
 .LightScreenTick:
 	ld a, [de]
@@ -5706,9 +5706,9 @@ MoveInfoBox:
 	ret
 
 .Disabled:
-	db "Disabled!@"
+	db "¡Desact.!@"
 .Type:
-	db "TYPE/@"
+	db "TIPO/@"
 
 .PrintPP:
 	hlcoord 5, 11
@@ -6209,7 +6209,7 @@ LoadEnemyMon:
 ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
 	cp HIGH(1024)
-	jr c, .GenerateDVs ; try again
+	jp c, .GenerateDVs ; try again ; FYI: This one was changed by "jp" in erosunica's fork, "jr" in pokecrystal
 
 ; Finally done with DVs
 
@@ -8398,7 +8398,7 @@ DisplayLinkBattleResult:
 	jr .store_result
 
 .store_result
-	hlcoord 6, 8
+	hlcoord 3, 8 ; FYI: This was 6, 8 in the pokecrystal repository
 	call PlaceString
 	farcall BackupGSBallFlag
 	ld c, 200
@@ -8425,23 +8425,17 @@ DisplayLinkBattleResult:
 	ret
 
 .YouWin:
-	db "YOU WIN@"
+	db "    GANAS     @"
 .YouLose:
-	db "YOU LOSE@"
+	db "   PIERDES    @"
 .Draw:
-	db "  DRAW@"
+	db "    EMPATE    @"
 
 .Mobile_InvalidBattle:
-	hlcoord 6, 8
-	ld de, .InvalidBattle
-	call PlaceString
-	ld c, 200
-	call DelayFrames
-	call ClearTilemap
 	ret
 
 .InvalidBattle:
-	db "INVALID BATTLE@"
+	db "BATALLA INVÁLIDA@"
 
 IsMobileBattle2:
 	ld a, [wLinkMode]
@@ -8593,11 +8587,11 @@ ReadAndPrintLinkBattleRecord:
 	db "  ---  <LF>"
 	db "         -    -    -@"
 .Record:
-	db "<PLAYER>'s RECORD@"
+	db "RÉCORD de <PLAYER>@"
 .Result:
-	db "RESULT WIN LOSE DRAW@"
+	db "RESULT  GAN PERD EMP@"
 .Total:
-	db "TOTAL  WIN LOSE DRAW@"
+	db "TOTAL   GAN PERD EMP@"
 
 BattleEnd_HandleRoamMons:
 	ld a, [wBattleType]

@@ -141,7 +141,6 @@ BuenaPrize:
 	ld hl, .BuenaComeAgainText
 	call PrintText
 	call JoyWaitAorB
-	call PlayClickSFX
 	ret
 
 .BuenaAskWhichPrizeText:
@@ -203,7 +202,7 @@ PrintBlueCardBalance:
 	ret
 
 .Points_string:
-	db "Points@"
+	db "Puntos@"
 
 BlueCardBalanceMenuHeader:
 	db MENU_BACKUP_TILES ; flags
