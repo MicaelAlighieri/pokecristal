@@ -9,6 +9,15 @@ Este código fuente recreado permite construir el siguiente archivo ROM:
 
 Para configurar el repositorio, consulta el siguiente enlace: [INSTALL.md](INSTALL.md).
 
+## Estructuración del repositorio
+
+Con el objetivo de facilitar el aprendizaje y el desarrollo mediante este código fuente recreado, este repositorio está organizado en un sistema de tres ramas:
+- **master:** Contiene el código testeado y definitivo del archivo de juego.
+- **dev**: Contiene una versión en desarrollo del código que puede estar más alineada con el repositorio oficial de pokecrystal
+- **feature**: Contiene modificaciones en proceso de exportación a la rama de desarrollo
+
+El código testeado y definitivo contará con una versión de soporte extendido (LTS) durante 4 años, periodo durante el cual **no presentará ningún tipo de modificaciones estructurales**, y se dará soporte en forma de tutoriales y resolución de dudas.
+
 ## Más información útil
 
 - [**FAQ**](FAQ.md)
@@ -28,7 +37,7 @@ Otros proyectos de decompilación:
 - [**Pokémon Ruby**][pokeruby]
 - [**Pokémon FireRed**][pokefirered]
 - [**Pokémon Emerald**][pokeemerald]
-- [**Pokeemerald Base Hispana**] https://github.com/ivaantxo/Pokeemerald-Base-Hispana/
+- **Pokeemerald Base Hispana:** https://github.com/ivaantxo/Pokeemerald-Base-Hispana/
 
 [pokered]: https://github.com/pret/pokered
 [pokeyellow]: https://github.com/pret/pokeyellow
