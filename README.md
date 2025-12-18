@@ -9,6 +9,8 @@ Este código fuente recreado permite construir el siguiente archivo ROM:
 
 Para configurar el repositorio, consulta el siguiente enlace: [INSTALL.md](INSTALL.md).
 
+Agradecimientos especiales a erosunica (https://github.com/erosunica/) por hacer el commit inicial con los cambios, mi trabajo ha sido una adaptación del suyo.
+
 ## Estructuración del repositorio
 
 Con el objetivo de facilitar el aprendizaje y el desarrollo mediante este código fuente recreado, este repositorio está organizado en un sistema de tres ramas:
