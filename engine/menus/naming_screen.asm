@@ -69,7 +69,7 @@ NamingScreen:
 	maskbits NUM_NAMING_SCREEN_TYPES
 	ld e, a
 	ld d, 0
-	ld hl, NamingScreenJumptable
+	ld hl, .Jumptable
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -77,9 +77,8 @@ NamingScreen:
 	ld l, a
 	jp hl
 
-NamingScreenJumptable:
-; entries correspond to NAME_* constants (see constants/menu_constants.asm)
-	table_width 2
+.Jumptable:
+; entries correspond to NAME_* constants
 	dw .Pokemon
 	dw .Player
 	dw .Rival
@@ -88,7 +87,6 @@ NamingScreenJumptable:
 	dw .Friend
 	dw .Pokemon
 	dw .Pokemon
-	assert_table_length NUM_NAMING_SCREEN_TYPES
 
 .Pokemon:
 	ld a, [wCurPartySpecies]
@@ -168,7 +166,7 @@ NamingScreenJumptable:
 	ld hl, vTiles0 tile $00
 	lb bc, BANK(PokeBallSpriteGFX), 4
 	call Request2bpp
-	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00
+	xor a
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], a
@@ -257,7 +255,7 @@ NamingScreen_IsTargetBox:
 	push bc
 	push af
 	ld a, [wNamingScreenType]
-	sub NAME_BOX - 1
+	sub $3
 	ld b, a
 	pop af
 	dec b
@@ -328,7 +326,7 @@ NamingScreen_ApplyTextInputMode:
 NamingScreenJoypadLoop:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit JUMPTABLE_EXIT_F, a
+	bit 7, a
 	jr nz, .quit
 	call .RunJumptable
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -390,7 +388,7 @@ NamingScreenJoypadLoop:
 	depixel 10, 3
 	call NamingScreen_IsTargetBox
 	jr nz, .got_cursor_position
-	ld d, 8 * TILE_WIDTH
+	ld d, 8 * 8
 .got_cursor_position
 	ld a, SPRITE_ANIM_OBJ_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
@@ -459,7 +457,7 @@ NamingScreenJoypadLoop:
 .end
 	call NamingScreen_StoreEntry
 	ld hl, wJumptableIndex
-	set JUMPTABLE_EXIT_F, [hl]
+	set 7, [hl]
 	ret
 
 .select
@@ -621,12 +619,12 @@ NamingScreen_AnimateCursor:
 	call NamingScreen_IsTargetBox
 	jr nz, .not_box
 	ld b, $c
-;.not_box
-;	cp b
-;	pop bc
-;	jr nc, .wrap_left
-;	inc [hl]
-;	ret
+.not_box
+	cp b
+	pop bc
+	jr nc, .wrap_left
+	inc [hl]
+	ret
 
 .wrap_left
 	ld [hl], $0
@@ -637,7 +635,6 @@ NamingScreen_AnimateCursor:
 	jr nz, .no_wrap_target_left
 	xor a
 .no_wrap_target_left
-	ld e, a
 	add a
 	add a
 	ld hl, SPRITEANIMSTRUCT_VAR1
@@ -683,13 +680,13 @@ NamingScreen_AnimateCursor:
 	add hl, bc
 	ld a, [hl]
 	call NamingScreen_IsTargetBox
-	jr nz, .not_box
+	jr nz, .down_not_box
 	cp $5
 	jr nc, .wrap_up
 	inc [hl]
 	ret
 
-.not_box
+.down_not_box
 	cp $4
 	jr nc, .wrap_up
 	inc [hl]
@@ -758,7 +755,7 @@ AddDakutenToCharacter: ; unreferenced
 
 .loop
 	ld a, [hli]
-	cp -1
+	cp $ff
 	jr z, NamingScreen_AdvanceCursor_CheckEndOfString
 	cp c
 	jr z, .done
@@ -910,8 +907,8 @@ LoadNamingScreenGFX:
 	ld a, BANK(NamingScreenGFX_Cursor)
 	call FarCopyBytes
 
-	ld a, SPRITE_ANIM_DICT_TEXT_CURSOR
-	ld hl, wSpriteAnimDict + (NUM_SPRITEANIMDICT_ENTRIES - 1) * 2
+	ld a, $5
+	ld hl, wSpriteAnimDict + 9 * 2
 	ld [hli], a
 	ld [hl], NAMINGSCREEN_CURSOR
 	xor a
@@ -1062,7 +1059,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .DoMailEntry:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit JUMPTABLE_EXIT_F, a
+	bit 7, a
 	jr nz, .exit_mail
 	call .DoJumptable
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -1197,7 +1194,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .finished
 	call NamingScreen_StoreEntry
 	ld hl, wJumptableIndex
-	set JUMPTABLE_EXIT_F, [hl]
+	set 7, [hl]
 	ret
 
 .select
@@ -1418,7 +1415,7 @@ MailComposition_TryAddLastCharacter:
 	pop hl
 .loop
 	ld a, [hli]
-	cp -1 ; end?
+	cp $ff
 	jp z, NamingScreen_AdvanceCursor_CheckEndOfString
 	cp c
 	jr z, .done
