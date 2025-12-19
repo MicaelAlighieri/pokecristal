@@ -1,4 +1,4 @@
-DEF NAMINGSCREEN_CURSOR     EQU $7e ; FYI: Troublemaking file with severe changes
+DEF NAMINGSCREEN_CURSOR     EQU $7e
 
 DEF NAMINGSCREEN_BORDER     EQU '■' ; $60
 DEF NAMINGSCREEN_MIDDLELINE EQU '→' ; $eb
@@ -34,6 +34,11 @@ NamingScreen:
 .loop
 	call NamingScreenJoypadLoop
 	jr nc, .loop
+	ld a, [wNamingScreenDestinationPointer + 0]
+	ld e, a
+	ld a, [wNamingScreenDestinationPointer + 1]
+	ld d, a
+	farcall StripString
 	pop af
 	ldh [hInMenu], a
 	pop af
@@ -118,7 +123,7 @@ NamingScreenJumptable:
 
 .NicknameStrings:
 	db "@"
-	db "¿NOMBRE?@"
+	db "¿APODO?@"
 
 .Player:
 	farcall GetPlayerIcon
@@ -262,7 +267,7 @@ NamingScreen_IsTargetBox:
 NamingScreen_InitText:
 	call WaitTop
 	hlcoord 0, 0
-	ld bc, SCREEN_AREA
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 1, 1
@@ -277,7 +282,6 @@ NamingScreen_InitText:
 NamingScreen_ApplyTextInputMode:
 	call NamingScreen_IsTargetBox
 	jr nz, .not_box
-	assert BoxNameInputLower - NameInputLower == BoxNameInputUpper - NameInputUpper
 	ld hl, BoxNameInputLower - NameInputLower
 	add hl, de
 	ld d, h
@@ -367,7 +371,16 @@ NamingScreenJoypadLoop:
 	ret
 
 .RunJumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld e, a
+	ld d, $0
+	ld hl, .Jumptable
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
 
 .Jumptable:
 	dw .InitCursor
@@ -608,12 +621,12 @@ NamingScreen_AnimateCursor:
 	call NamingScreen_IsTargetBox
 	jr nz, .not_box
 	ld b, $c
-.not_box
-	cp b
-	pop bc
-	jr nc, .wrap_left
-	inc [hl]
-	ret
+;.not_box
+;	cp b
+;	pop bc
+;	jr nc, .wrap_left
+;	inc [hl]
+;	ret
 
 .wrap_left
 	ld [hl], $0
@@ -624,8 +637,9 @@ NamingScreen_AnimateCursor:
 	jr nz, .no_wrap_target_left
 	xor a
 .no_wrap_target_left
+	ld e, a
 	add a
-	add e
+	add a
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], a
@@ -657,7 +671,6 @@ NamingScreen_AnimateCursor:
 .no_wrap_target_right
 	dec a
 	dec a
-	ld e, a
 	add a
 	add a
 	ld hl, SPRITEANIMSTRUCT_VAR1
@@ -672,6 +685,12 @@ NamingScreen_AnimateCursor:
 	call NamingScreen_IsTargetBox
 	jr nz, .not_box
 	cp $5
+	jr nc, .wrap_up
+	inc [hl]
+	ret
+
+.not_box
+	cp $4
 	jr nc, .wrap_up
 	inc [hl]
 	ret
@@ -739,7 +758,7 @@ AddDakutenToCharacter: ; unreferenced
 
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, NamingScreen_AdvanceCursor_CheckEndOfString
 	cp c
 	jr z, .done
@@ -1078,7 +1097,16 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	ret
 
 .DoJumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld e, a
+	ld d, 0
+	ld hl, .Jumptable
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
 
 .Jumptable:
 	dw .init_blinking_cursor
@@ -1266,7 +1294,6 @@ ComposeMail_AnimateCursor:
 	jr nz, .wrap_around_command_right
 	xor a
 .wrap_around_command_right
-	ld e, a
 	add a
 	add a
 	ld hl, SPRITEANIMSTRUCT_VAR1
@@ -1391,7 +1418,7 @@ MailComposition_TryAddLastCharacter:
 	pop hl
 .loop
 	ld a, [hli]
-	cp $ff ; end?
+	cp -1 ; end?
 	jp z, NamingScreen_AdvanceCursor_CheckEndOfString
 	cp c
 	jr z, .done
