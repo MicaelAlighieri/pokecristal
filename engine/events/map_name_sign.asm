@@ -165,12 +165,12 @@ PlaceMapNameCenterAlign:
 	jr z, .stop
 	cp '<WBR>'
 	jr z, .loop
-	cp "<¯>"
+	cp '<¯>'
 	jr z, .loop
 	inc c
-	cp " "
+	cp ' '
 	jr z, .space
-	cp "¯"
+	cp '¯'
 	jr z, .space
 	jr .loop
 .space

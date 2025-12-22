@@ -37,7 +37,7 @@ PrintBCDNumber::
 	call PrintLetterDelay
 	inc hl
 .done
-	ld a, "¥" ; currency symbol
+	ld a, '¥' ; currency symbol
 	ld [hli], a
 	ret
 

@@ -8,13 +8,13 @@ TownMap_ConvertLineBreakCharacters:
 	jr z, .line_feed
 	cp '<BSP>'
 	jr z, .line_feed
-	cp "<¯>"
+	cp '<¯>'
 	jr z, .hyphen_split
 	inc hl
 	jr .loop
 
 .hyphen_split
-	ld [hl], "<->"
+	ld [hl], '<->'
 	jr .end
 
 .line_feed

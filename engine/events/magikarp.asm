@@ -82,20 +82,20 @@ PrintMagikarpLength:
 	call PrintNum
 
 	; Make sure the string is terminated
-	ld a, "@"
+	ld a, '@'
 	ld [wStringBuffer1 + 5], a
 
 	; The last character is a fraction
 	ld a, [wStringBuffer1 + 3]
 	ld [wStringBuffer1 + 4], a
-	ld a, "."
+	ld a, '.'
 	ld [wStringBuffer1 + 3], a
 
 	; Strip any leading zeros
 	ld hl, wStringBuffer1
 .loop
 	ld a, [hli]
-	cp "0"
+	cp '0'
 	jr z, .loop
 	dec hl
 	ld de, wStringBuffer1

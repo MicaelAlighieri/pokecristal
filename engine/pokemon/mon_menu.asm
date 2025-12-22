@@ -459,7 +459,7 @@ ComposeMailMessage:
 	cp PLAYER_NAME_LENGTH
 	jr nc, .continue
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .find_terminator
 
 	; Redundant check?
@@ -469,9 +469,9 @@ ComposeMailMessage:
 
 	; If it's found, write the nationlity
 	ld hl, wTempMailNationality ; FYI: Expressed as "AuthorNationality" in erosunica's fork
-	ld a, "E"
+	ld a, 'E'
 	ld [hli], a
-	ld a, "S"
+	ld a, 'S'
 	ld [hl], a
 
 	; If the terminating byte isn't found, wTempMailNationality will hold

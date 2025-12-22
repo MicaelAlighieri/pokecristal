@@ -61,7 +61,7 @@ SafariBattleMenuHeader:
 	dba .PrintSafariBallsRemaining
 
 .Text:
-	db "サファりボール×		@" ; "SAFARI BALL×  @"
+	db "サファりボール×　　@" ; "SAFARI BALL×  @"
 	db "エサをなげる@" ; "THROW BAIT"
 	db "いしをなげる@" ; "THROW ROCK"
 	db "にげる@" ; "RUN"

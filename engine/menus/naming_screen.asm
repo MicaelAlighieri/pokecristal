@@ -265,7 +265,7 @@ NamingScreen_IsTargetBox:
 NamingScreen_InitText:
 	call WaitTop
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 1, 1
@@ -326,7 +326,7 @@ NamingScreen_ApplyTextInputMode:
 NamingScreenJoypadLoop:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call .RunJumptable
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -388,7 +388,7 @@ NamingScreenJoypadLoop:
 	depixel 10, 3
 	call NamingScreen_IsTargetBox
 	jr nz, .got_cursor_position
-	ld d, 8 * 8
+	ld d, 8 * TILE_WIDTH
 .got_cursor_position
 	ld a, SPRITE_ANIM_OBJ_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct

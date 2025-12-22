@@ -315,10 +315,10 @@ OakTimeWhatHoursText:
 	text_far _OakTimeWhatHoursText
 	text_asm
 	hlcoord 1, 16
-	ld [hl], "¿"
+	ld [hl], '¿'
 	inc hl
 	call DisplayHourOClock
-	ld a, "?"
+	ld a, '?'
 	ld [bc], a
 	inc bc
 	ld hl, .OakTimeHoursQuestionMarkText
@@ -339,10 +339,10 @@ OakTimeWhoaMinutesText:
 	text_far _OakTimeWhoaMinutesText
 	text_asm
 	hlcoord 8, 14
-	ld [hl], "¿"
+	ld [hl], '¿'
 	inc hl
 	call DisplayMinutesWithMinString
-	;ld a, "?" ; FYI: Hotfix to solve question mark duplication glitch while translating the decompilated code
+	;ld a, '?' ; FYI: Hotfix to solve question mark duplication glitch while translating the decompilated code
 	ld [bc], a
 	inc bc
 	ld hl, .OakTimeMinutesQuestionMarkText
@@ -355,7 +355,7 @@ OakTimeWhoaMinutesText:
 OakText_ResponseToSetTime:
 	text_asm
 	decoord 1, 14
-	ld a, "¡"
+	ld a, '¡'
 	ld [de], a
 	inc de
 	ld a, [wInitHourBuffer]

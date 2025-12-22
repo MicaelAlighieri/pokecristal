@@ -19,7 +19,7 @@ _ResetClock:
 	push af
 	hlcoord 7, 6
 	ld bc, 5
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	pop af
 	jr c, .wrongpassword

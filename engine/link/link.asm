@@ -1672,10 +1672,10 @@ LinkTradePlaceArrow:
 	hlcoord 6, 9
 	ld bc, SCREEN_WIDTH
 	call AddNTimes
-	ld [hl], "¯"
+	ld [hl], '¯'
 	ld bc, MON_NAME_LENGTH
 	add hl, bc
-	ld [hl], "¯"
+	ld [hl], '¯'
 	ret
 
 LinkEngine_FillBox:

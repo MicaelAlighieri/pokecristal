@@ -24,7 +24,7 @@ StripString::
 
 .strip_front
 	ld a, [hli]
-	cp " "
+	cp ' '
 	jr z, .strip_front
 	dec hl
 
@@ -33,18 +33,18 @@ StripString::
 .copy
 	ld a, [hli]
 	ld [de], a
-	cp "@"
+	cp '@'
 	jr z, .done
 	inc de
 
-	cp " "
+	cp ' '
 	jr z, .copy
 	ld b, d
 	ld c, e
 	jr .copy
 
 .done
-	ld a, "@"
+	ld a, '@'
 	ld [bc], a
 	pop bc
 	ret

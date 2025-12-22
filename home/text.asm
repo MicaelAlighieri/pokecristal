@@ -233,8 +233,8 @@ ENDM
 	dict '<POKE>',    PlacePOKE
 	dict '<WBR>',     NextChar
 	dict '<BSP>',     ' '
-	dict "<¯>",       NextChar
-	dict "<->",       PlaceHyphenSplit
+	dict '<¯>',       NextChar
+	dict '<->',       PlaceHyphenSplit
 	dict '<DEXEND>',  PlaceDexEnd
 	dict '<TARGET>',  PlaceMoveTargetsName
 	dict '<USER>',    PlaceMoveUsersName
@@ -276,7 +276,7 @@ SixDotsChar:  print_name SixDotsCharText
 PlacePKMN:    print_name PlacePKMNText
 PlacePOKE:    print_name PlacePOKEText
 PlaceHyphenSplit:
-	ld [hl], "-"
+	ld [hl], '-'
 	jp LineFeedChar
 PlaceJPRoute: print_name PlaceJPRouteText
 PlaceWatashi: print_name PlaceWatashiText
@@ -327,7 +327,7 @@ PlaceEnemysName::
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld a, " "
+	ld a, ' '
 	ld [hli], a
 	ld de, wOTClassName
 	jr PlaceCommandCharacter
@@ -1019,4 +1019,4 @@ TextCommand_DAY::
 .Thurs:  db "JUEVES@"
 .Fri:    db "VIERNES@"
 .Satur:  db "SÁBADO@"
-.Day:    db "DAY@"
+.Day:    db "@"
