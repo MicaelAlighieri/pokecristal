@@ -26,7 +26,7 @@ cd /mnt/c/Users/<usuario>/Desktop
 
 Si esto funciona, sigue las [instrucciones para **Linux**](#linux) abajo según la distribución que hayas instalado en WSL.
 
-De lo contrario, continúa leyendo las [instrucciones antiguas para Windows](#windows-cualquier-version).
+De lo contrario, continúa leyendo las [instrucciones antiguas para Windows](#windows-cualquier-versión).
 
 ## Windows (cualquier versión)
 
